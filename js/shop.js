@@ -64,19 +64,44 @@ var cart = [];
 var total = 0;
 
 // Exercise 1
+let ulElement=document.getElementsByClassName("list")[0];
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
+    for(let i=0;i<products.length;i++){
+        let product=products[i];
+        // 2. Add found product to the cartList array
+        if(product.id===id){
+            cartList.push(products);    
+            
+            let textElement=document.createTextNode(product.name);
+            let liElement=document.createElement("li");
+            liElement.appendChild(textElement);
+            ulElement.appendChild(liElement);
+            break;
+        }      
+    } 
+      
 }
 
 // Exercise 2
-function cleanCart() {
+let buttonElement=document.createElement("button");
+let textButton=document.createTextNode("Delete");
+let containerElement=document.getElementById("containerList");
+buttonElement.appendChild(textButton);
+buttonElement.style.backgroundColor="#E5E7E9";
+buttonElement.style.borderRadius="2px";
+containerElement.appendChild(buttonElement);
+buttonElement.addEventListener("click",cleanCart,false);
 
+function cleanCart() {
+    cartList.length=0;
+    ulElement.innerHTML="";   
 }
 
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
+
 }
 
 // Exercise 4
