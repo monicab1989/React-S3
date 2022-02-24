@@ -74,20 +74,25 @@ function buy(id) {
     // 2. Add found product to the cartList array
     if (product.id === id) {
       cartList.push(products[i]);
-      let textElement = document.createTextNode(product.name);
+      generateCart();
+      calculateTotal();
+      break;
+    }
+  }
+}
+
+function paintShoppingCar(){
+  for(let i=0;i<cart.length;i++){
+    let textElement = document.createTextNode(cart[i].quantity + " " + cart[i].name);
       let liElement = document.createElement("li");
       liElement.appendChild(textElement);
       liElement.style.listStyle="none";
       ulElement.appendChild(liElement);
       let priceElement = document.createElement("li");
-      let textPrice = document.createTextNode("Price: " + product.price);
+      let textPrice = document.createTextNode("Price: " + cart[i].price);
       priceElement.appendChild(textPrice);
       priceElement.style.listStyle="none";
       prices.appendChild(priceElement);
-     generateCart();
-      calculateTotal();
-      break;
-    }
   }
 }
 
@@ -124,25 +129,33 @@ function calculateTotal() {
 function generateCart() {
   // Using the "cartList" array that contains all the items in the shopping cart,
   // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+  let subtotal=0;
+  cart.length=0;
   for(let i=0;i<cartList.length;i++){
-    let quantity=1;
-    let subtotal=cartList[i].price;
-    cart=[{
-      id: cartList[i].id,
-      name: cartList[i].name,
-      price: cartList[i].price,
-      type: cartList[i].type,
-      quantity: quantity,
-      subtotal: subtotal,
-    }];
-    console.log(cart[i]);
-    if(cartList[i]!=cart[i]){
-     
-      cart.push(cartList[i]);
-      console.log(cart);
-    }   else{
-      console.log("hola");
+    let productFind="";
+    for(let j=0;j<cart.length;j++){
+      if(cart[j].id===cartList[i].id){     
+        productFind = cart[j];
+        break;
+      }
     }
+    if(productFind===""){
+      cart.push(
+        {
+        id: cartList[i].id,
+        name: cartList[i].name,
+        price: cartList[i].price,
+        type: cartList[i].type,
+        quantity: 1,
+        subtotal: subtotal
+      });
+    }else {
+      productFind.quantity++;
+      subtotal=productFind.quantity*productFind.price;
+    } 
+    ulElement.innerHTML = "";
+    prices.innerHTML="";
+    paintShoppingCar();  
   }
 }
 
