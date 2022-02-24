@@ -83,6 +83,7 @@ function buy(id) {
 
 function paintShoppingCar(){
   for(let i=0;i<cart.length;i++){
+    
     let textElement = document.createTextNode(cart[i].quantity + " " + cart[i].name);
       let liElement = document.createElement("li");
       liElement.appendChild(textElement);
@@ -147,7 +148,8 @@ function generateCart() {
         price: cartList[i].price,
         type: cartList[i].type,
         quantity: 1,
-        subtotal: subtotal
+        subtotal: subtotal,
+        subtotalWithDiscount: 0
       });
     }else {
       productFind.quantity++;
@@ -155,13 +157,24 @@ function generateCart() {
     } 
     ulElement.innerHTML = "";
     prices.innerHTML="";
-    paintShoppingCar();  
+    paintShoppingCar(); 
+    applyPromotionsCart(); 
   }
 }
 
 // Exercise 5
 function applyPromotionsCart() {
   // Apply promotions to each item in the array "cart"
+  for(let i=0; i<cart.length;i++){
+    if(cart[i].quantity>=3 && cart[i].name==="cooking oil"){
+      cart[i].subtotalWithDiscount = (cart[i].price - 0.5) * cart[i].quantity;
+      console.log(cart[i].subtotalWithDiscount);
+    }
+    if(cart[i].quantity>=10 && cart[i].name==="Instant cupcake mixture"){
+      cart[i].subtotalWithDiscount = (2 * cart[i].price)/3;
+      console.log(cart[i].subtotalWithDiscount);
+    }
+  }
 }
 
 // ** Nivell II **
