@@ -48,22 +48,24 @@
             <div class="col-sm-6">
                 <div class="mt-3 row">
                     <h5 class="my-auto">First Name :</h5>
-                    <input class="ml-3 name input rounded p-2" type="text" placeholder="First Name" />
+                    <input class="ml-3 name input rounded p-2" id="firstName" type="text" placeholder="First Name"/>
                     <p id="errorName">Numbers in the name are not valid</p>
                 </div>
                 <div class="mt-3 row ">
                     <h5 class="my-auto">Email :</h5>
-                    <input class="ml-3 input rounded p-2" type="email" placeholder="Email" />
+                    <input class="ml-3 input rounded p-2" id="email" type="email" placeholder="Email"/>
                 </div>
                 <div class="mt-3 row ">
                     <h5 class="my-auto">Address :</h5>
-                    <input class="ml-3 input rounded p-2" type="text" placeholder="Address" />
+                    <input class="ml-3 input rounded p-2" id="address" type="text" placeholder="Address"/>
+                    <p id="errorAddress">The field cannot be empty and it must have a min of 3 characters</p>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="mt-3 row">
-                    <h5 class="my-auto name my-auto">Last Name :</h5>
-                    <input class="ml-3 input rounded p-2" type="text" placeholder="Last Name" />
+                    <h5 class="my-auto name my-auto" value="">Last Name :</h5>
+                    <input class="ml-3 input rounded p-2" type="text" id="lastName" placeholder="Last Name" />
+                    <p id="errorLastName">The field cannot be empty, it must have a min of 3 characters and number are not valid</p>
                 </div>
                 <div class="mt-3 row">
                     <h5 class="my-auto my-auto">Password :</h5>
