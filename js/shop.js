@@ -239,16 +239,17 @@ function printCart() {
       priceElement.style.listStyle="none";
       prices.appendChild(priceElement);
      }
-      
-
-
-      
+  
   }
 }
-let buttonElement = document.createElement("button");
+
+      let buttonElement = document.createElement("button");
       let textButton = document.createTextNode("Delete");
       let containerElement = document.getElementById("containerList");
       buttonElement.appendChild(textButton);
-      buttonElement.style.backgroundColor = "#E5E7E9";
+      buttonElement.style.backgroundColor = "black";
+      buttonElement.style.color = "white";
       containerElement.appendChild(buttonElement);
       buttonElement.addEventListener("click", cleanCart, false);
+
+      

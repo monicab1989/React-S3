@@ -2,7 +2,36 @@
 
 body {
     font-family: Poppins;
+    background-color: #FAF7FC;
 }
 #errorPassword, #errorName, #errorPhone, #errorLastName, #errorAddress {
     display: none;
+}
+
+.btn{
+    background-color: black !important;
+    color: white !important;
+}
+.btn:hover{
+    background-color: white !important;
+    color: black !important;
+    border: 2px solid black;
+}
+#containerForm{
+    background-color: #f2e9f6;
+}
+h2{
+    background-color: #f2e9f6;
+}
+#iconDolar{
+    color: #f3c429;
+}
+#iconTime{
+    color: #3a79be;
+}
+#iconHand{
+    color: #28408f;
+}
+#iconReturn{
+    color: #c02330;
 }

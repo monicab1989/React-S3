@@ -1,4 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 body{
     font-family: Poppins;
+    width: 100%;
+    background-image: url(./../images/shop2.png);
+    background-attachment: fixed;
+    background-size: cover;
+}
+.btn{
+    background-color: black !important;
+    color: white !important;
+}
+.btn:hover{
+    background-color: white !important;
+    color: black !important;
+    border: 2px solid black;
+}
+
+@media(max-width: 768px){
+    body{
+        background-image: url(./../images/shopMovil.png);
+    }
 }
