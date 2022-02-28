@@ -111,6 +111,7 @@ function calculateTotal() {
   total = 0;
   for (let i = 0; i < cart.length; i++) {
     total = total + cart[i].price;
+    cart[i].subtotal=total;
     totalElement.innerHTML="Total: " + total + "€"; 
   }
 }
@@ -119,7 +120,6 @@ function calculateTotal() {
 /*function generateCart() {
   // Using the "cartList" array that contains all the items in the shopping cart,
   // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
-  let subtotal=0;
   cart.length=0;
   for(let i=0;i<cartList.length;i++){
     let productFind="";
@@ -137,8 +137,7 @@ function calculateTotal() {
         price: cartList[i].price,
         type: cartList[i].type,
         quantity: 1,
-        subtotal: subtotal,
-        subtotalWithDiscount: 0
+        subtotal: 0,
       });
     }else {
       productFind.quantity++;
@@ -146,22 +145,37 @@ function calculateTotal() {
     } 
     ulElement.innerHTML = "";
     prices.innerHTML="";
-    paintShoppingCar(); 
+    paintShoppingCart(); 
     applyPromotionsCart(); 
   }
-}*/
+}
+function paintShoppingCart(){
+  for(let i=0;i<cart.length;i++){
+      let textElement = document.createTextNode(cart[i].quantity + " " + cart[i].name);
+      let liElement = document.createElement("li");
+      liElement.appendChild(textElement);
+      liElement.style.listStyle="none";
+      ulElement.appendChild(liElement);
+      let priceElement = document.createElement("li");
+      let textPrice = document.createTextNode("Price: " + cart[i].price);
+      priceElement.appendChild(textPrice);
+      priceElement.style.listStyle="none";
+      prices.appendChild(priceElement);
+  }
+}
+*/
 
 // Exercise 5
 function applyPromotionsCart() {
   // Apply promotions to each item in the array "cart"
   for (let i = 0; i < cart.length; i++) {
+    cart[i].subtotalWithDiscount=cart[i].price;
+    cart[i].subtotal=total;
     if (cart[i].quantity >= 3 && cart[i].name === "cooking oil") {
       cart[i].subtotalWithDiscount = (cart[i].price - 0.5) * cart[i].quantity;
-      console.log(cart[i].subtotalWithDiscount);
     }
     if (cart[i].quantity >= 10 && cart[i].name === "Instant cupcake mixture") {
       cart[i].subtotalWithDiscount = (2 * cart[i].price) / 3;
-      console.log(cart[i].subtotalWithDiscount);
     }
   }
 }
@@ -190,7 +204,7 @@ function addToCart(id) {
         if (cart[j].id === product.id) {
           productFind = cart[j];
           ulElement.innerHTML = "";
-      prices.innerHTML = "";
+          prices.innerHTML = "";
           break;
         }
       }
@@ -200,8 +214,8 @@ function addToCart(id) {
         productFind.quantity++;
         subtotal = productFind.quantity * productFind.price;
       }
-      applyPromotionsCart();
       calculateTotal();
+      applyPromotionsCart();
       ulElement.innerHTML = "";
       prices.innerHTML = "";
       printCart();
@@ -215,10 +229,11 @@ function removeFromCart(id) {
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cartList array
   for(let i=0; i<cart.length; i++){
-    if(cart[i]==id && cart[i].quantity > 1){
-      card[i].quantity--;
-    }else{
-      cart.splice(i,0);
+    if(cart[i].id==id && cart[i].quantity > 1){
+      cart[i].quantity=cart[i].quantity-1;
+      console.log(cart[i].quantity);
+    }else if(cart[i].id==id && cart[i].quantity=== 1){
+      cart.splice(i,-1);
     }
   }
 }

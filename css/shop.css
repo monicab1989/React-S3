@@ -62,6 +62,10 @@ body{
     justify-content: center !important;
 }
 
+.card{
+    width: 18rem;
+}
+
 
 @media(max-width: 768px){
     .card-text{
@@ -74,4 +78,9 @@ body{
         display: flex;
         flex-basis: 0px;
     }
+    .card{
+        width: 100%;
+        margin-left: 0px !important;
+    }
 }
+
