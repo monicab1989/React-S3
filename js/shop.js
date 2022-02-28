@@ -170,7 +170,7 @@ function applyPromotionsCart() {
   // Apply promotions to each item in the array "cart"
   for (let i = 0; i < cart.length; i++) {
     cart[i].subtotalWithDiscount=cart[i].price;
-    cart[i].subtotal=total;
+    cart[i].subtotal=cart[i].price * cart[i].quantity;
     if (cart[i].quantity >= 3 && cart[i].name === "cooking oil") {
       cart[i].subtotalWithDiscount = (cart[i].price - 0.5) * cart[i].quantity;
     }

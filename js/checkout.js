@@ -65,7 +65,7 @@ function validate() {
         result=false;
     }else{
         address.style.borderColor="black";
-        errorPassword.style.display="none";
+        errorAddress.style.display="none";
     }
     if(phone.value==="" || phone.value.length<3 || expressionNumber.test(phone.value)!=true){
         phone.style.borderColor="red";
